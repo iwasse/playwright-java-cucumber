@@ -16,8 +16,8 @@ public class LoginPage {
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Login")).click();
     }
 
-    public String getLoginErrorMsg(){
-        return page.getByRole(AriaRole.ALERT).textContent();
+    public Locator getLoginErrorMsg(){
+        return page.getByRole(AriaRole.ALERT);
     }
 
     public void clickForgotPassword() {

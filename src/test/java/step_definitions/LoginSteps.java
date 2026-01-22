@@ -5,11 +5,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.Assert;
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.ResetPasswordPage;
 import utils.DriverFactory;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class LoginSteps {
 
@@ -31,7 +32,7 @@ public class LoginSteps {
 
     @Then("the user should be redirected to the dashboard")
     public void theUserShouldBeRedirectedToTheDashboard() {
-        Assert.assertEquals(dashboardPage.getDashboardTitle(), "Dashboard");
+        assertThat(dashboardPage.getDashboardTitle()).hasText("Dashboard");
     }
 
     @When("the user login with invalid credentials {string} and {string}")
@@ -41,7 +42,7 @@ public class LoginSteps {
 
     @Then("an error message should be displayed indicating invalid login")
     public void anErrorMessageShouldBeDisplayedIndicatingInvalidLogin() {
-        Assert.assertEquals(loginPage.getLoginErrorMsg(), "Invalid credentials");
+        assertThat(loginPage.getLoginErrorMsg()).hasText("Invalid credentials");
     }
 
     @When("the user clicks on the \"Forgot Password\" link")
@@ -56,7 +57,6 @@ public class LoginSteps {
 
     @Then("a password recovery email should be sent to the user's email address")
     public void aPasswordRecoveryEmailShouldBeSentToTheUserSEmailAddress() {
-        String infoMsg = resetPasswordPage.getConfirmationMessage();
-        Assert.assertEquals(infoMsg, "Reset Password link sent successfully");
+        assertThat(resetPasswordPage.getConfirmationMessage()).hasText("Reset Password link sent successfully");
     }
 }

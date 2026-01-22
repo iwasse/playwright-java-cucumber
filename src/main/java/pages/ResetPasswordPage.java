@@ -1,5 +1,6 @@
 package pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
@@ -15,7 +16,7 @@ public class ResetPasswordPage {
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Reset Password")).click();
     }
 
-    public String getConfirmationMessage() {
-        return page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Reset Password link sent")).textContent();
+    public Locator getConfirmationMessage() {
+        return page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("Reset Password link sent"));
     }
 }
